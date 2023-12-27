@@ -13,8 +13,9 @@ Online Version: [SarcasticBot](https://sarcastical.pythonanywhere.com/)
 ## Installation
 
 1. Clone the repository: `git clone https://github.com/definitelytnotanassassin/sarcastical.git`
-2. Install the required dependencies: `pip install django`
-3. Start the application: `python manage.py runserver`
+2. Install the required dependencies: `pip install django` and `pip install openai`
+3. Define your own OpenAI key
+4. Start the application: `python manage.py runserver`
 
 ## Usage
 
