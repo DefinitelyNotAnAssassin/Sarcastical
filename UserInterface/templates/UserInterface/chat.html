@@ -1,0 +1,105 @@
+{% extends "UserInterface/base.html" %}
+
+{% load static %}
+
+
+{% block title %} Sarcastical Chat {% endblock title %}
+
+{% block content %}
+
+<style> 
+
+
+   
+.spinner {
+    animation: rotate 2s linear infinite;
+    z-index: 2;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    & .path {
+      stroke: rgb(0, 0, 0);
+      stroke-linecap: round;
+      animation: dash 1.5s ease-in-out infinite;
+    }
+    
+  }
+  
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
+  }
+  
+    .htmx-indicator{
+        display:none;
+    }
+    .htmx-request .htmx-indicator{
+        display:inline;
+    }
+  
+  
+</style>
+<div class="flex flex-col h-screen">
+    <div class="flex-1 overflow-y-scroll">
+        <div class="p-4">
+            <div class="flex items-center justify-between mb-4">
+               
+            </div>
+            <div class="flex flex-col space-y-4" id="chats" style="overflow-y: auto;">
+            
+            </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="fixed bottom-0 left-0 right-0">
+        <form hx-post="/chat" hx-target="#chats" hx-swap="beforeend" hx-on::after-request="this.reset()">
+            <div class="flex">
+                <input autocomplete="off" autofocus="true" type="text" name="message" class="inline w-full px-4 py-2 border border-gray-300 rounded-md" placeholder="Type your message..." id="message">
+                <button hx-indicator = "#spinner" type="submit" class="inline px-4 py-2 ml-4 text-white bg-blue-500 rounded-md" id="send" hx-indicator="true">Send
+                    <svg class="spinner htmx-indicator" viewBox="0 0 50 50">
+                        <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+                      </svg>
+                </button>
+               
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+
+    
+   
+{% endblock content %}
+
+<script>
+    var input = document.getElementById("message");
+
+// Execute a function when the user presses a key on the keyboard
+input.addEventListener("keypress", function(event) {
+  // If the user presses the "Enter" key on the keyboard
+  if (event.key === "Enter") {
+    document.getElementById("myBtn").click();
+  }
+});
+</script>
