@@ -48,4 +48,4 @@ along with this project. If not, see <https://www.gnu.org/licenses/>.
  
 ## Contact
 
-For any inquiries or support, please contact us at [dharklike@gmail.com](mailto:dhakrlike@gmail.com).
+For any inquiries or support, please contact us at [dna@definitelynotanassassin.tech](mailto:dna@definitelynotanassassin.tech).
