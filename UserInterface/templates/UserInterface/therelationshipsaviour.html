@@ -1,0 +1,77 @@
+{% extends "UserInterface/base.html" %}
+
+{% block content %}
+<style> 
+
+
+   
+    .spinner {
+        animation: rotate 2s linear infinite;
+        z-index: 2;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50px;
+        height: 50px;
+        & .path {
+          stroke: rgb(0, 0, 0);
+          stroke-linecap: round;
+          animation: dash 1.5s ease-in-out infinite;
+        }
+        
+      }
+      
+      @keyframes rotate {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      
+      @keyframes dash {
+        0% {
+          stroke-dasharray: 1, 150;
+          stroke-dashoffset: 0;
+        }
+        50% {
+          stroke-dasharray: 90, 150;
+          stroke-dashoffset: -35;
+        }
+        100% {
+          stroke-dasharray: 90, 150;
+          stroke-dashoffset: -124;
+        }
+      }
+      
+        .htmx-indicator{
+            display:none;
+        }
+        .htmx-request .htmx-indicator{
+            display:inline;
+        }
+      
+      
+    </style>
+
+
+
+    <div class="flex justify-center items-center h-screen">
+        <div class="text-center">
+            <h1 class="text-4xl font-bold mb-4">The Relationship Saviour</h1>
+            <p class="text-lg mb-4">Prepare to have your relationship saved by our witty, sarcastic, and classy responses.</p>
+            <p class="text-lg mb-4">Just type in your message and let the AI work its magic!</p>
+           
+
+            <form  hx-post = "{% url 'The Relationship Saviour' %}"  hx-swap = "beforebegin">
+                <input hx-indicator = "#spinner" type="text" name="message" autocomplete = "off" class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none" placeholder="Type your message here...">
+                <button  hx-indicator = "#spinner" type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Help</button>
+                <svg class="spinner htmx-indicator" viewBox="0 0 50 50">
+                    <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+                  </svg>
+            </form>
+           
+        </div>
+    </div>
+
+
+{% endblock content %}
